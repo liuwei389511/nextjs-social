@@ -1,6 +1,5 @@
-/** @format */
-import Image from "next/image";
+const Homepage = () => {
+  return <div className="">Homepage</div>;
+};
 
-export default function Page() {
-  return <Image src="/gift.png" alt="Profile" width={100} height={100} />;
-}
+export default Homepage;
