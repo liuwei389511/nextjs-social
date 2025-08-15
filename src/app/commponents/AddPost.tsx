@@ -1,7 +1,7 @@
 import Image from "next/image";
 const addPost = () => {
   return (
-    <div className="p-4 bg-white rounded-lg flex gap-4 justify-between text-sm">
+    <div className="p-4 bg-white rounded-lg shadow-md  flex gap-4 justify-between text-sm">
       {/**AVATAR */}
       <Image
         src="https://images.pexels.com/photos/33409003/pexels-photo-33409003.jpeg?auto=compress&cs=tinysrgb&w=400&loading=lazy"
