@@ -1,5 +1,5 @@
-const leftMeun = () => {
-  return <div className="hidden xl:block w-[20%]">leftMeun</div>;
+const LeftMenu = () => {
+  return <div className="hidden xl:block w-[20%]">LeftMenu</div>;
 };
 
-export default leftMeun;
+export default LeftMenu;
