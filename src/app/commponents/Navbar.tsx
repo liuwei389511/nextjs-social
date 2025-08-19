@@ -95,7 +95,7 @@ const Navber = () => {
             <UserButton />
           </SignedIn>
           <SignedOut>
-            <div className="flex items-center gap-2 text-sm">
+            <div className="flex items-center gap-2 text-sm mr-2">
               <Image src="/login.png" alt="login.png" width={20} height={20} />
               <Link href="/sign-in">Login/Register</Link>
             </div>
