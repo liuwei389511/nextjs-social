@@ -30,8 +30,9 @@ const Post = () => {
             src="https://images.pexels.com/photos/33433152/pexels-photo-33433152.jpeg"
             alt=""
             fill
+            priority
             className="object-cover rounded-md"
-          ></Image>
+          />
         </div>
         <p>
           Learn more about these environment variables and how to customize

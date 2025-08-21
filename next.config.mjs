@@ -17,6 +17,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.pexels.com",
       },
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+      },
     ],
   },
 };
