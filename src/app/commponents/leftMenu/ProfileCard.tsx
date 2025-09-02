@@ -8,23 +8,6 @@ const ProfileCard = async () => {
   const { userId } = await auth();
   const userClerk = await currentUser();
   if (!userId) return null;
-  console.log("User username:", userClerk?.username);
-
-  //clerk username update （未知问题，修改username的时候不触发clerk中的POST，所以在这重新获取手动更新）
-  if (userClerk) {
-    try {
-      await prisma.user.update({
-        where: {
-          id: userId,
-        },
-        data: {
-          username: userClerk.username || "",
-        },
-      });
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
-  }
 
   const user = await prisma.user.findFirst({
     where: {
@@ -39,6 +22,21 @@ const ProfileCard = async () => {
     },
   });
   if (!user) return null;
+  //clerk username update （未知问题，修改username的时候不触发clerk中的POST，所以在这重新获取手动更新）
+  if (userClerk) {
+    try {
+      await prisma.user.update({
+        where: {
+          id: userId,
+        },
+        data: {
+          username: userClerk.username || "",
+        },
+      });
+    } catch (error) {
+      console.error("Error updating user?", error);
+    }
+  }
 
   return (
     <div>

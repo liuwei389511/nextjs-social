@@ -4,8 +4,10 @@ import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
 import UserInfoCardInteraction from "./UserInfoCardInteraction";
+import UpdateUser from "./UpdateUser";
 
 const UserInfoCard = async ({ user }: { user: User }) => {
+  console.log("user", user);
   const createdAtDate = new Date(user.createdAt);
   const formattedDate = createdAtDate.toLocaleDateString("en-US", {
     year: "numeric",
@@ -17,6 +19,7 @@ const UserInfoCard = async ({ user }: { user: User }) => {
   let isFollowingSent = false;
 
   const { userId: currentUserId } = await auth();
+  console.log("Current User ID:", currentUserId);
   if (currentUserId) {
     const blockRes = await prisma.block.findFirst({
       where: {
@@ -47,9 +50,14 @@ const UserInfoCard = async ({ user }: { user: User }) => {
     <div className="p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-4">
       <div className="flex items-center justify-between font-medium">
         <span className="text-gray-500">User Infomation</span>
-        <Link href="/" className="text-blue-500 text-xs">
-          See All
-        </Link>
+
+        {currentUserId === user.id ? (
+          <UpdateUser />
+        ) : (
+          <Link href="/" className="text-blue-500 text-xs">
+            See All
+          </Link>
+        )}
       </div>
       {/**Bottom */}
       <div className="flex flex-col gap-4 text-gray-500">
@@ -108,13 +116,14 @@ const UserInfoCard = async ({ user }: { user: User }) => {
           Block User
         </div> */}
 
-        <UserInfoCardInteraction
-          userId={user.id}
-          currentUserId={currentUserId ?? undefined}
-          isUserBlocked={isUserBlocked}
-          isFollowing={isFollowing}
-          isFollowingSent={isFollowingSent}
-        />
+        {currentUserId && currentUserId !== user.id && (
+          <UserInfoCardInteraction
+            userId={user.id}
+            isUserBlocked={isUserBlocked}
+            isFollowing={isFollowing}
+            isFollowingSent={isFollowingSent}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,87 @@
+"use server";
+import { auth } from "@clerk/nextjs/server";
+import prisma from "./client";
+
+export const switchFollow = async (userId: string) => {
+  const { userId: currentUserId } = await auth();
+  if (!currentUserId) {
+    throw new Error("Not authenticated");
+  }
+  try {
+    const existingFollow = await prisma.follower.findFirst({
+      where: {
+        followerId: currentUserId,
+        followingId: userId,
+      },
+    });
+
+    if (existingFollow) {
+      // Unfollow the user
+      await prisma.follower.delete({
+        where: {
+          id: existingFollow.id,
+        },
+      });
+    } else {
+      // Follow the user
+      const existingFollowRequest = await prisma.followRequest.findFirst({
+        where: {
+          senderId: currentUserId,
+          receiverId: userId,
+        },
+      });
+      if (existingFollowRequest) {
+        await prisma.followRequest.delete({
+          where: {
+            id: existingFollowRequest.id,
+          },
+        });
+      } else {
+        await prisma.followRequest.create({
+          data: {
+            senderId: currentUserId,
+            receiverId: userId,
+          },
+        });
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to switch follow status");
+  }
+};
+
+export const switchBlock = async (userId: string) => {
+  const { userId: currentUserId } = await auth();
+  if (!currentUserId) {
+    throw new Error("Not authenticated");
+  }
+  try {
+    const existingBlock = await prisma.block.findFirst({
+      where: {
+        blockerId: currentUserId,
+        blockedId: userId,
+      },
+    });
+
+    if (existingBlock) {
+      // Unblock the user
+      await prisma.block.delete({
+        where: {
+          id: existingBlock.id,
+        },
+      });
+    } else {
+      // Block the user
+      await prisma.block.create({
+        data: {
+          blockerId: currentUserId,
+          blockedId: userId,
+        },
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to switch block status");
+  }
+};

@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
           cover: "/noCover.png",
         },
       });
+      console.log("1111");
       return new Response("User has been created!", { status: 200 });
     } catch (err) {
       return new Response("Failed to create the user!", { status: 500 });
