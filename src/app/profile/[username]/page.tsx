@@ -2,7 +2,6 @@ import Feed from "@/app/commponents/feed/Feed";
 import LeftMenu from "@/app/commponents/leftMenu/LeftMenu";
 import RightMenu from "@/app/commponents/rightMenu/RightMenu";
 import prisma from "@/lib/client";
-import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -18,7 +17,7 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
   if (!user) return notFound();
 
   let isBlocked = false;
-  const { userId: currentUserId } = await auth();
+  const currentUserId = "user_325jZ8Vv1uMyDXmjO4vagw4Qnra";
   if (currentUserId) {
     const res = await prisma.block.findFirst({
       where: {

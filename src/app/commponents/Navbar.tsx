@@ -1,13 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
-import {
-  ClerkLoading,
-  ClerkLoaded,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
 
 const Navber = () => {
   return (
@@ -63,44 +56,30 @@ const Navber = () => {
       </div>
       {/**RIGHT */}
       <div className="w-[30%] flex items-center gap-4 xl:gap-8 justify-end">
-        <ClerkLoading>
-          <div className="inline-block h-4  w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
-        </ClerkLoading>
-        <ClerkLoaded>
-          <SignedIn>
-            <div className="cursor-pointer">
-              <Image
-                src="/people.png"
-                alt="people.png"
-                width={20}
-                height={20}
-              />
-            </div>
-            <div className="cursor-pointer">
-              <Image
-                src="/messages.png"
-                alt="messages.png"
-                width={20}
-                height={20}
-              />
-            </div>
-            <div className="cursor-pointer">
-              <Image
-                src="/notifications.png"
-                alt="people.png"
-                width={20}
-                height={20}
-              />
-            </div>
-            <UserButton />
-          </SignedIn>
-          <SignedOut>
-            <div className="flex items-center gap-2 text-sm mr-2">
-              <Image src="/login.png" alt="login.png" width={20} height={20} />
-              <Link href="/sign-in">Login/Register</Link>
-            </div>
-          </SignedOut>
-        </ClerkLoaded>
+        {/* <div className="inline-block h-4  w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div> */}
+        <div className="cursor-pointer">
+          <Image src="/people.png" alt="people.png" width={20} height={20} />
+        </div>
+        <div className="cursor-pointer">
+          <Image
+            src="/messages.png"
+            alt="messages.png"
+            width={20}
+            height={20}
+          />
+        </div>
+        <div className="cursor-pointer">
+          <Image
+            src="/notifications.png"
+            alt="people.png"
+            width={20}
+            height={20}
+          />
+        </div>
+        <div className="flex items-center gap-2 text-sm mr-2">
+          <Image src="/login.png" alt="login.png" width={20} height={20} />
+          <Link href="/sign-in">Login/Register</Link>
+        </div>
         <MobileMenu />
       </div>
     </div>
