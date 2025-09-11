@@ -1,19 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
+import WalletConnect from "./WalletConnect";
 
 const Navber = () => {
   return (
     <div className="h-24 flex items-center justify-between">
       {/**LEFT */}
-      <div className="md:hidden lg:block w-[20%]">
+      <div className="md:hidden lg:block w-[15%]">
         <Link href="/" className="font-bold text-xl text-blue-600">
           LAMASOCIAL
         </Link>
       </div>
       {/**CENTER */}
-      <div className="hidden md:flex w-[50%] text-sm items-center justify-between">
-        <div className="flex gap-6 text-gray-600">
+      <div className="hidden md:flex w-[20%] text-sm items-center justify-between">
+        <div className="flex gap-6 text-gray-600 h30">
           <Link href="/" className="flex gap-2 items-center">
             <Image
               src="/home.png"
@@ -24,7 +25,7 @@ const Navber = () => {
             />
             <span>Homepage</span>
           </Link>
-          <Link href="/" className="flex gap-2 items-center">
+          <Link href="/agent" className="flex gap-2 items-center">
             <Image
               src="/friends.png"
               alt="home.png"
@@ -32,9 +33,9 @@ const Navber = () => {
               height={16}
               className="w-4 h-4"
             />
-            <span>Friends</span>
+            <span>Agent</span>
           </Link>
-          <Link href="/" className="flex gap-2 items-center">
+          <Link href="/wallet" className="flex gap-2 items-center">
             <Image
               src="/stories.png"
               alt="home.png"
@@ -42,22 +43,22 @@ const Navber = () => {
               height={16}
               className="w-4 h-4"
             />
-            <span>Stories</span>
+            <span>Wallet</span>
           </Link>
         </div>
-        <div className="hidden xl:flex p-2 bg-slate-100 items-center rounded-md">
+        {/* <div className="hidden xl:flex p-2 bg-slate-100 items-center rounded-md">
           <input
             type="text"
             placeholder="Search..."
             className="bg-transparent outline-none"
           />
           <Image src={"/search.png"} alt="search.png" width={14} height={14} />
-        </div>
+        </div> */}
       </div>
       {/**RIGHT */}
-      <div className="w-[30%] flex items-center gap-4 xl:gap-8 justify-end">
+      <div className="w-[60%] flex items-center gap-4 xl:gap-8 justify-end">
         {/* <div className="inline-block h-4  w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div> */}
-        <div className="cursor-pointer">
+        {/* <div className="cursor-pointer">
           <Image src="/people.png" alt="people.png" width={20} height={20} />
         </div>
         <div className="cursor-pointer">
@@ -75,11 +76,12 @@ const Navber = () => {
             width={20}
             height={20}
           />
-        </div>
-        <div className="flex items-center gap-2 text-sm mr-2">
+        </div> */}
+        {/* <div className="flex items-center gap-2 text-sm mr-2">
           <Image src="/login.png" alt="login.png" width={20} height={20} />
           <Link href="/sign-in">Login/Register</Link>
-        </div>
+        </div> */}
+        <WalletConnect />
         <MobileMenu />
       </div>
     </div>
